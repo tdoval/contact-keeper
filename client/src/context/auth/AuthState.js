@@ -17,67 +17,35 @@ const AuthState = (props) => {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
     loading: true,
+    user: null,
+    error: null,
   };
 
-  const [state, dispatch] = useReducer(ContactReducer, initialState);
+  const [state, dispatch] = useReducer(AuthReducer, initialState);
 
-  /*********************
-   * *******************
-   *  **FULL CRUD
-   *********************/
+  // Load User
 
-  // Add Contact
-  const addContact = (contact) => {
-    contact.id = uuid();
-    dispatch({ type: ADD_CONTACT, payload: contact });
-  };
+  // Register User
 
-  // Delete Contact
-  const deleteContact = (id) => {
-    dispatch({ type: DELETE_CONTACT, payload: id });
-  };
+  // Login User
 
-  //Set Current Contact
-  const setCurrent = (contact) => {
-    dispatch({ type: SET_CURRENT, payload: contact });
-  };
+  // Logout
 
-  // Clear Current Contact
-  const clearCurrent = (contact) => {
-    dispatch({ type: CLEAR_CURRENT });
-  };
+  // Clear Errors
 
-  // Update Contact
-  const updateContact = (contact) => {
-    dispatch({ type: UPDATE_CONTACT, payload: contact });
-  };
-  // Filter Contacts
-  const filterContacts = (text) => {
-    dispatch({ type: FILTER_CONTACTS, payload: text });
-  };
-
-  // Clear Filter
-  const clearFilter = (contact) => {
-    dispatch({ type: CLEAR_FILTER });
-  };
   return (
-    <ContactContext.Provider
+    <AuthContext.Provider
       value={{
-        contacts: state.contacts,
-        current: state.current,
-        filtered: state.filtered,
-        addContact,
-        deleteContact,
-        setCurrent,
-        clearCurrent,
-        updateContact,
-        filterContacts,
-        clearFilter,
+        token: state.token,
+        isAuthenticated: state.isAuthenticated,
+        loading: state.loading,
+        user: state.user,
+        error: state.error,
       }}
     >
       {props.children}
-    </ContactContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-export default ContactState;
+export default AuthState;
