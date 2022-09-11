@@ -40,5 +40,11 @@ describe('Add Contact', () => {
     cy.get('.item-enter-done > .text-primary > :nth-child(1)').should(
       'be.visible'
     );
+
+    // Delete contact
+    cy.findByRole('button', { name: `delete-${email}` }).click();
+
+    // Verify if was deleted
+    cy.findByText(email).should('not.exist');
   });
 });

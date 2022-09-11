@@ -50,7 +50,14 @@ const ContactItem = ({ contact }) => {
         >
           Edit
         </button>
-        <button className='btn btn-danger btn-sm' onClick={onDelete}>
+        <button
+          className='btn btn-danger btn-sm'
+          onClick={onDelete}
+          key={'delete-' + email}
+          id={'delete-' + email}
+          aria-label={'delete-' + email}
+          data-test={'delete-' + email}
+        >
           Delete
         </button>
       </p>
