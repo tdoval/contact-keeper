@@ -56,7 +56,10 @@ const Login = (props) => {
           <label htmlFor='password'>Password</label>
           <input
             type='password'
+            label='password'
             name='password'
+            id='password'
+            data-test='signin-password'
             value={password}
             onChange={onChange}
           />

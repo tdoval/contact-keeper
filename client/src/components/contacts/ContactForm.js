@@ -55,23 +55,33 @@ const ContactForm = () => {
       <h2 className='text-primary'>
         {current ? 'Edit Contact' : 'Add Contact'}
       </h2>
+      <label for='name'>Name</label>
       <input
         type='text'
         placeholder='name'
+        id='name'
+        data-test='addcontact-name'
+        label='name'
         name='name'
         value={name}
         onChange={onChange}
       />
+      <label for='email'>Email</label>
       <input
         type='email'
+        label='email'
         placeholder='Email'
+        id='email'
         name='email'
         value={email}
         onChange={onChange}
       />
+      <label for='phone'>Phone</label>
       <input
         type='text'
         placeholder='Phone'
+        label='phone'
+        id='phone'
         name='phone'
         value={phone}
         onChange={onChange}
@@ -81,18 +91,20 @@ const ContactForm = () => {
         type='radio'
         name='type'
         value='personal'
+        id='personal'
         checked={type === 'personal'}
         onChange={onChange}
       />{' '}
-      Personal{' '}
+      <label for='personal'>Personal</label>{' '}
       <input
         type='radio'
         name='type'
         value='professional'
+        id='professional'
         checked={type === 'professional'}
         onChange={onChange}
       />{' '}
-      professional
+      <label for='professional'>Professional</label>
       <div>
         <input
           type='submit'
