@@ -11,15 +11,35 @@ describe('Add Contact', () => {
     // Add Contact
     const firstName = randomName.first();
     const lastName = randomName.last();
+    const email = firstName + '_' + lastName + '@test.com';
+
     cy.findByRole('textbox', { name: /name/i }).type(
       firstName + ' ' + lastName
     );
-    cy.findByRole('textbox', { name: /email/i }).type(
-      firstName + '_' + lastName + '@test.com'
-    );
+    cy.findByRole('textbox', { name: /email/i }).type(email);
     const phoneNumber = Math.floor(100000000 + Math.random() * 900000000);
     cy.findByRole('textbox', { name: /phone/i }).type(phoneNumber);
-    cy.findByRole('radio', { name: /professional/i }).check();
+    const roles = ['professional', 'personal'];
+    const role = roles[Math.floor(Math.random() * roles.length)];
+    // cy.findByRole('radio', { name: role }).check();
+    cy.get(`#${role}`).check();
     cy.findByRole('button', { name: /add contact/i }).click();
+
+    // Verify if Contact was Added
+    cy.findByText(email).should('be.visible');
+
+    // Edit Contact
+    cy.findByRole('button', { name: `edit-${email}` }).click();
+    cy.findByRole('textbox', { name: /name/i })
+      .focus()
+      .clear()
+      .type(firstName + ' ' + lastName + '-edited');
+    cy.findByRole('button', { name: /update contact/i }).click();
+
+    // Verify if it was updated
+    // const heading = cy.findByRole('heading', {  name: /irwin professional/i});within(heading).getByText(/irwin/i);
+    cy.get('.item-enter-done > .text-primary > :nth-child(1)').should(
+      'be.visible'
+    );
   });
 });
