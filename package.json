@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "random-name": "^0.1.2"
   }
 }
