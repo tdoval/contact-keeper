@@ -16,7 +16,7 @@ const ContactItem = ({ contact }) => {
   return (
     <div className='card bg-light'>
       <h3 className='text-primary text-left'>
-        {name}{' '}
+        <span>{name}</span>{' '}
         <span
           style={{ float: 'right' }}
           className={
@@ -30,7 +30,7 @@ const ContactItem = ({ contact }) => {
       <ul className='list'>
         {email && (
           <li>
-            <i className='fas fa-envelope-open'></i> {email}
+            <i className='fas fa-envelope-open'></i> <span>{email}</span>
           </li>
         )}
         {phone && (
@@ -43,6 +43,10 @@ const ContactItem = ({ contact }) => {
         <button
           className='btn btn-dark btn-sm'
           onClick={() => setCurrent(contact)}
+          key={'edit-' + email}
+          id={'edit-' + email}
+          aria-label={'edit-' + email}
+          data-test={'edit-' + email}
         >
           Edit
         </button>

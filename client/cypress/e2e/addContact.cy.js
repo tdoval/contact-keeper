@@ -37,7 +37,6 @@ describe('Add Contact', () => {
     cy.findByRole('button', { name: /update contact/i }).click();
 
     // Verify if it was updated
-    // const heading = cy.findByRole('heading', {  name: /irwin professional/i});within(heading).getByText(/irwin/i);
     cy.get('.item-enter-done > .text-primary > :nth-child(1)').should(
       'be.visible'
     );
